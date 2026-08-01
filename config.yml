@@ -1,0 +1,45 @@
+backend:
+  name: github
+  repo: your-github-username/customer-site # Target Customer Repo
+  branch: main
+
+# Where images/media will be saved in customer-site
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  # 1. PRODUCTS COLLECTION
+  - name: "products"
+    label: "Products"
+    folder: "content/products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "body", widget: "markdown" }
+      - { label: "Price", name: "price", widget: "number", value_type: "float" }
+      - { label: "Product Image", name: "image", widget: "image", required: false }
+      - { 
+          label: "Status", 
+          name: "status", 
+          widget: "select", 
+          options: ["published", "draft"], 
+          default: "published" 
+        }
+
+  # 2. BANNERS COLLECTION
+  - name: "banners"
+    label: "Banners"
+    folder: "content/banners"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Banner Title", name: "title", widget: "string" }
+      - { label: "Subtitle / Tagline", name: "body", widget: "string", required: false }
+      - { 
+          label: "Status", 
+          name: "status", 
+          widget: "select", 
+          options: ["published", "draft"], 
+          default: "published" 
+        }
